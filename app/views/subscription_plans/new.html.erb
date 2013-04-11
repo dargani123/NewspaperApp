@@ -1,0 +1,19 @@
+<h1> Create New Subscription Plan </h1>
+
+<%= form_for(@subscription_plan) do |f| %>
+
+  <%= f.label :price %>
+  <%= f.number_field :price %>
+  <br>
+  <%= f.radio_button :weekly, true  %>
+  <%= f.label :weekly, "Weekly", value: true %>
+  <br>
+  <%= f.radio_button :weekly, false  %>
+  <%= f.label :weekly, "Daily", value: false %>
+  <br>
+  <%= f.label :newspaper_id, "Select a newspaper:" %>
+  <%= f.collection_select :newspaper_id, Newspaper.all, :id, :title %>
+  <br>
+  <%= f.submit %>
+
+<% end %>

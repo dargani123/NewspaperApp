@@ -1,0 +1,22 @@
+<h2> Welcome </h2>
+
+<h3> Choose Subscription Plans </h3>
+
+<%= form_for(@user) do |f| %>
+
+  <% SubscriptionPlan.all.each do |subscription| %>
+    <%=
+    check_box_tag(
+    "user[subscription_ids][]",
+    subscription.id,
+    @user.subscription_ids.include?(subscription.id),
+    :id => "subscription_#{subscription.id}"
+    )
+    %>
+    <%= label_tag("subscription_#{subscription.id}", subscription.newspaper.title) %>
+    <%= hidden_field_tag("user[subscription_ids][]") %>
+
+    <% end %>
+
+<%= f.submit %>
+<% end %>

@@ -1,0 +1,28 @@
+<h1> Create a Newspaper </h1>
+<%= form_for(@newspaper) do |f| %>
+
+<%= f.label :title %>
+<%= f.text_field :title %>
+
+<%= f.label :editor %>
+<%= f.text_field :editor %>
+
+<br>
+
+<h4> Add a subscription plan below: </h4>
+<%= f.fields_for(:subscription_plans) do |sub_form| %>
+
+  <%= sub_form.label :price %>
+  <%= sub_form.number_field :price %>
+  <br>
+  <%= sub_form.radio_button :weekly, true %>
+  <%= sub_form.label :weekly, "Weekly", value: true %>
+  <br>
+  <%= sub_form.radio_button :weekly, false %>
+  <%= sub_form.label :weekly, "Daily", value: false %>
+  <br>
+<% end %>
+
+<%= f.submit %>
+
+<% end %>

@@ -1,0 +1,9 @@
+<h1> <%= @newspaper.title %> </h1>
+<h4> by <%= @newspaper.editor %> </h4>
+
+<p>
+  <% @newspaper.subscription_plans.each do |plan| %>
+    <li><%= "$#{plan.price} #{plan.weekly ? "weekly" : "daily"}" %></li>
+  <% end %>
+
+</p>

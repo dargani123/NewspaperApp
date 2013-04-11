@@ -1,0 +1,52 @@
+<h1> Sign Up </h1>
+
+<%= form_for @user do |f| %>
+
+<%= f.label :email %>
+<%= f.text_field :email %>
+<br>
+<%= f.label :password %>
+<%= f.password_field :password %>
+<br>
+<%= label_tag("confirmation", "Confirm Pwd:") %>
+<%= password_field_tag("confirmation") %>
+
+<br>
+
+<h3>Choose a package </h3>
+<%= f.fields_for(:subscriptions) do |sub_form| %>
+
+<table>
+<% SubscriptionPlan.all.each do |subscription| %>
+  <tr>
+    <td>
+       <%=
+          check_box_tag(
+          "user[subscription_ids][]",
+          subscription.id,
+          @user.subscription_ids.include?(subscription.id),
+          :id => "subscription[subscription.id]"
+        )
+        %>
+        <%= label_tag("subscription[subscription.id]", subscription.newspaper.title) %>
+        <br>
+        <td> <%= number_to_currency(subscription.price) %> </td>
+        <td> <%= subscription.weekly ? "weekly" : "daily" %> </td>
+    </td>
+        <% end %>
+
+    <%= hidden_field_tag("user[subscription_ids][]") %>
+
+
+    <br>
+  </tr>
+<% end %>
+
+</table>
+
+
+
+
+<%= f.submit %>
+
+<% end %>

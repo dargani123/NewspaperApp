@@ -1,0 +1,17 @@
+<head> <%= link_to "sign up", sign_up_url %> </head>
+<h2> Sign In </h2>
+
+
+<%= form_tag("/sessions") do %>
+
+  <%= label_tag("user[email]", "Email:") %>
+  <%= text_field_tag("user[email]") %>
+  <br>
+  <%= label_tag("user[password]", "Password:") %>
+  <%= password_field_tag("user[password]") %>
+
+  <br>
+
+  <%= submit_tag "Sign in" %>
+
+<% end %>
